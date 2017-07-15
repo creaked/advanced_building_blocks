@@ -59,9 +59,11 @@ module Enumerable
     count
   end
   
-  def my_map
+  def my_map(proc=nil)
     new_array = Array.new
-    if block_given?
+    if proc!=nil
+      self.my_each {|x| new_array << proc.call(x)}
+    elsif block_given? && proc==nil
       self.my_each {|x| new_array << yield(x)}
     else
       self.my_each {|x| new_array << x}
