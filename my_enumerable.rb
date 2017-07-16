@@ -61,9 +61,9 @@ module Enumerable
   
   def my_map(proc=nil)
     new_array = Array.new
-    if proc!=nil
+    if !proc.nil?
       self.my_each {|x| new_array << proc.call(x)}
-    elsif block_given? && proc==nil
+    elsif block_given? && proc.nil?
       self.my_each {|x| new_array << yield(x)}
     else
       self.my_each {|x| new_array << x}
@@ -73,11 +73,7 @@ module Enumerable
     
   def my_inject
     inject = self
-    if inject == nil
-      inject = 0
-    else
-      inject = 1
-    end
+    inject.nil? ? inject = 0 : inject = 1
     
     self.my_each {|x| inject = yield(inject, x)}
     return inject
