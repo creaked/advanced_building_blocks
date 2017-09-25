@@ -72,8 +72,7 @@ module Enumerable
   end
     
   def my_inject
-    inject = self
-    inject.nil? ? inject = 0 : inject = 1
+    inject = 0
     
     self.my_each {|x| inject = yield(inject, x)}
     return inject
